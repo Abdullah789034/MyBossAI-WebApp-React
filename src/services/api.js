@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-const API_URL = 'https://api-my-boss-ai.vercel.app/api';
+const API_URL = 'https://my-boss-ai-backend.vercel.app/api';
 
 // Create axios instance
 const api = axios.create({
