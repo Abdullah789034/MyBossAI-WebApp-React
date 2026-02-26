@@ -31,12 +31,13 @@ const httpServer = createServer(app);
 // });
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://mybossai.devhaki.com/",
+    origin: ["https://mybossai.devhaki.com", "http://localhost:5173", "https://mybossai.devhaki.com/"],
     methods: ["GET", "POST"],
     credentials: true,
   },
 });
 const allowedOrigins = [
+  "https://mybossai.devhaki.com",
   "https://mybossai.devhaki.com/",
   "http://localhost:5173"   // for local development
 ];
@@ -57,16 +58,6 @@ app.use(
 
 
 // Middleware
-// app.use(cors());
-app.use(
-  cors({
-    origin: "https://mybossai.devhaki.com/",
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    credentials: true,
-  })
-);
-
-app.options("*", cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
