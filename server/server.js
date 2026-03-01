@@ -41,19 +41,20 @@ const allowedOrigins = [
   "http://localhost:5173"   // for local development
 ];
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      if (origin.includes("mybossai.devhaki.com") || origin.includes("localhost")) {
-        return callback(null, true);
-      }
-      return callback(new Error("CORS Blocked: " + origin));
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (origin.includes("mybossai.devhaki.com") || origin.includes("my-boss-ai-app.vercel.app") || origin.includes("localhost")) {
+      return callback(null, true);
+    }
+    return callback(new Error("CORS Blocked: " + origin));
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 
 // Middleware
